@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Welcome, {{ username }}{% endblock %}
+{% block body %}
+{% for message in flash_messages %}
+  <div class="flash_message">{{ message }}<a href="/">&times;</a></div>
+{% endfor %}
+<p>Your message</p>
+<ul>
+  {% for p in information %}
+    {% set prep = 'from' if (p.to_user == username) else 'to' %}
+    {% set acct = p.to_user if (p.form_user == username) else p.form_user %}
+    <li class="{{ prep }}">${{ p.dollars }} {{ prep }} <b>{{ acct }}</b>
+    say: <i>{{ p.memo }}</i></li>
+    {% if (p.Picid == 1)%}
+      <img src="/static/Stokes-Hello-Kitty2-1200.jpg" width="75" height="50">
+    {% endif %}
+	{% if (p.Picid == 2)%}
+      <img src="/static/kitty_pic.png" width="75" height="50">
+    {% endif %}
+	{% if (p.Picid == 3)%}
+      <img src="/static/0.jpg" width="75" height="50">
+    {% endif %}
+	{% if (p.Picid == 4)%}
+      <img src="/static/fh00589.jpg" width="75" height="50">
+    {% endif %}
+	{% if (p.Picid == 5)%}
+      <img src="/static/c0d11e77c57a3b.jpg" width="75" height="50">
+    {% endif %}
+	{% if (p.Picid == 6)%}
+      <img src="/static/1.560.jpg" width="75" height="50">
+    {% endif %}
+  {% endfor %}
+</ul>
+<a href="/chatwho">Chat</a> | <a href="/logout">Log out</a>
+{% endblock %}
